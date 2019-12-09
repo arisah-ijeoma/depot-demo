@@ -10,8 +10,24 @@
   </head>
 
   <body>
-    <main class=<%= controller.controller_name %>​​>
-      <%= yield %>
-    </main>
+    <header class="main">
+      <%= image_tag 'depot-logo', class: 'img', alt: 'logo' %>
+      <h1><%= @page_title %></h1>
+    </header>
+    <section class="content">
+      <nav class="side-nav">
+        <ul>
+          <li><%= link_to 'Home', '/' %></li>
+          <li><%= link_to 'Questions', '/questions' %></li>
+          <li><%= link_to 'News', '/news' %></li>
+          <li><%= link_to 'Contact', '/contact' %></li>
+          <li class="current-time"><%= Time.now.strftime('%d/%m/%Y %H:%M') %></li>
+        </ul>
+      </nav>
+
+      <main class=<%= controller.controller_name %>>
+        <%= yield %>
+      </main>
+    </section>
   </body>
 </html>
