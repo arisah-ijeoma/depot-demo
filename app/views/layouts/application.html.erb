@@ -26,6 +26,12 @@
       </nav>
 
       <main class=<%= controller.controller_name %>>
+        <% if notice %>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        <% end %>
+
         <%= yield %>
       </main>
     </section>

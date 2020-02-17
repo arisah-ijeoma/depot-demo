@@ -1,8 +1,4 @@
 <article>
-  <% if notice %>
-    <aside id="notice"><%= notice %></aside>
-  <% end %>
-
   <h2>Your Cart</h2>
   <table>
     <% @cart.line_items.each do |item| %>
@@ -10,6 +6,9 @@
         <td class="quantity"><%= item.quantity %></td>
         <td><%= item.product.title %></td>
         <td class="price"><%= number_to_currency(item.total_price) %></td>
+        <td>
+          <%= link_to 'Delete', line_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
     <tfoot>
