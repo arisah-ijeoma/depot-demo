@@ -10,5 +10,7 @@
     </tfoot>
   </table>
 
-  <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% unless cart.line_items.empty? %>
+    <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </article>
