@@ -1,8 +1,8 @@
 class LineItemsController < ApplicationController
   include CurrentCart
 
-  before_action :set_cart, only: %i[create destroy]
-  before_action :set_line_item, only: %i[show edit update destroy]
+  before_action :set_cart, only: %i[create remove_one destroy]
+  before_action :set_line_item, only: %i[show edit update remove_one destroy]
 
   # GET /line_items
   # GET /line_items.json
@@ -54,6 +54,15 @@ class LineItemsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def remove_one
+    @cart.remove_one_item(@line_item)
+
+    respond_to do |format|
+      format.html { redirect_to store_index_path, notice: 'Line item was successfully removed.' }
+      format.json { head :no_content }
     end
   end
 
