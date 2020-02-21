@@ -62,6 +62,9 @@ class CartsController < ApplicationController
       format.html { redirect_to carts_url, notice: 'Your cart is currently empty' }
       format.json { head :no_content }
     end
+
+    @products = Product.all
+    ActionCable.server.broadcast 'cart', html: render_to_string('store/index', layout: false)
   end
 
   private
