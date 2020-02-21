@@ -64,7 +64,7 @@ class CartsController < ApplicationController
     end
 
     @products = Product.all
-    ActionCable.server.broadcast 'cart', html: render_to_string('store/index', layout: false)
+    ActionCable.server.broadcast 'carts', html: render_to_string('store/index', layout: false)
   end
 
   private

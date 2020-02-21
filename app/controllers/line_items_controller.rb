@@ -64,6 +64,8 @@ class LineItemsController < ApplicationController
       format.html { redirect_to store_index_path, notice: 'Line item was successfully removed.' }
       format.json { head :no_content }
     end
+
+    ActionCable.server.broadcast 'line_items', html: render_to_string('carts/_cart', locals: { cart: @cart }, layout: false)
   end
 
   # DELETE /line_items/1
