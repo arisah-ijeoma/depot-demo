@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :orders
   resources :line_items do
-    member do
-      delete :remove_one
-    end
+    delete :remove_one, on: :member
   end
   resources :carts
   root 'store#index', as: 'store_index'
-  resources :products
+  resources :products do
+    get :who_bought, on: :member
+  end
 end
