@@ -1,0 +1,35 @@
+<p>Who bought <%= @product.title %></p>
+<p>Latest order was updated <%= @latest_order.try(:updated_at) %></p>
+
+<% @product.orders.each do |order| %>
+  <p>Title: Order <%= order.id %></p>
+  <div>
+    Summary
+
+    <p>Shipped to <%= order.address %></p>
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+      </tr>
+
+      <% order.line_items.each do |line_item| %>
+        <tr>
+          <td><%= line_item.product.title %></td>
+          <td><%= line_item.quantity %></td>
+          <td><%= number_to_currency(line_item.total_price) %></td>
+        </tr>
+      <% end %>
+
+      <tr>
+        <th colspan="2">total</th>
+        <th><%= number_to_currency(order.line_items.map(&:total_price).sum) %></th>
+      </tr>
+    </table>
+
+    <p>Paid by <%= order.pay_type %></p>
+    <p>Order name: <%= order.name %></p>
+    <p>Order email: <%= order.email %></p>
+  </div>
+<% end %>
