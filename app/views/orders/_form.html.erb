@@ -26,10 +26,8 @@
     <%= form.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.label :pay_type %>
-    <%= form.select :pay_type, Order.pay_types.keys, prompt: 'Select a payment method' %>
-  </div>
+  <%= form.label :payment_type %>
+  <%= form.select :payment_type_id, PaymentType.pluck(:name, :id), { prompt: 'Select a payment method' } %>
 
   <div class="actions">
     <%= form.submit 'Place order' %>
