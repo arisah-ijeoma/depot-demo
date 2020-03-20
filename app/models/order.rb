@@ -1,6 +1,5 @@
 class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
-  belongs_to :payment_type
 
   validates :name, :address, :email, presence: true
 
