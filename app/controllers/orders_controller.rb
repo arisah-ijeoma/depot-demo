@@ -76,10 +76,9 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.require(:order).permit(:name, :address, :email, :payment_type_id)
+    params.require(:order).permit(:name, :address, :email, :payment_type_id, pay_type_params)
   end
 
-  # next, test functionality
   def pay_type_params
     if order_params[:pay_type] == 'Credit Card'
       params.require(:order).permit(:credit_card_number, :expiration_date)
@@ -93,8 +92,6 @@ class OrdersController < ApplicationController
   end
 
   def ensure_cart_isnt_empty
-    if @cart.line_items.empty?
-      redirect_to store_index_path, notice: 'Your cart is empty'
-    end
+    redirect_to store_index_path, notice: 'Your cart is empty' if @cart.line_items.empty?
   end
 end
