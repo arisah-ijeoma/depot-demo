@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :products do
     get :who_bought, on: :member
   end
+
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end

@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: 'Jay Jay <jay@example.com'
+  default from: 'Jay Jay <jay@example.com>'
 
   def received(order)
     @order = order
