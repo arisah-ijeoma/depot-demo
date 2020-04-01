@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_124315) do
+ActiveRecord::Schema.define(version: 2020_03_23_140517) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_124315) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "pay_type"
+    t.integer "pay_type"
     t.string "credit_card_number"
     t.string "expiration_date"
     t.string "routing_number"
