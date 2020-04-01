@@ -36,6 +36,10 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         ChargeOrderJob.perform_now(@order, order_params.to_h)
 
+        @order.update(ship_date: Date.today)
+        # maybe move into a job
+        OrderMailer.shipped(@order).deliver_later
+
         format.html { redirect_to store_index_path, notice: 'Thank you for your order' }
         format.json { render :show, status: :created, location: @order }
       else
