@@ -17,7 +17,8 @@ class Pago
       Rails.logger.info 'Processing purchase order: ' +
         payment_details.fetch(:po_num).to_s
     else
-      raise "Unknown payment method: #{payment_method}"
+      Rails.logger.info "Unknown payment type: #{payment_method}"
+      OpenStruct.new(succeeded?: false)
     end
 
     sleep 3 unless Rails.env.test?
