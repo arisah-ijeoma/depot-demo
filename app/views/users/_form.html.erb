@@ -20,6 +20,11 @@
     </div>
 
     <div class="field">
+      <%= form.label :password, 'Current password:' %>
+      <%= form.password_field :current_password, size: 40 %>
+    </div>
+
+    <div class="field">
       <%= form.label :password, 'Password:' %>
       <%= form.password_field :password, size: 40 %>
     </div>
